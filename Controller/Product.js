@@ -1,4 +1,4 @@
-const Product = require('../Model/Product');
+const Product = require("../Model/Product");
 
 /**
  * Adds a new product to the database.
@@ -37,7 +37,7 @@ const updateProduct = async (req, res) => {
     });
 
     if (!updatedProduct) {
-      return res.status(404).json({ message: 'Product not found' });
+      return res.status(404).json({ message: "Product not found" });
     }
 
     updatedProduct = await Product.findById(id);
@@ -58,7 +58,7 @@ const getProductById = async (req, res) => {
     const product = await Product.findById(id);
 
     if (!product) {
-      return res.status(404).json({ message: 'Product not found' });
+      return res.status(404).json({ message: "Product not found" });
     }
 
     res.json(product);
@@ -89,29 +89,24 @@ const deleteProduct = async (req, res) => {
     const deletedProduct = await Product.findByIdAndDelete(id);
 
     if (!deletedProduct) {
-      return res.status(404).json({ message: 'Product not found' });
+      return res.status(404).json({ message: "Product not found" });
     }
 
-    res.json({ message: 'Product deleted successfully' });
+    res.json({ message: "Product deleted successfully" });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
-/**
- * Search products by name or category.
- */
 const searchProducts = async (req, res) => {
-  const { query } = req.query;
+  const { id } = req.params;
 
   try {
-    // Case-insensitive search by name or category
-    const products = await Product.find({
-      $or: [
-        { name: { $regex: new RegExp(query, 'i') } },
-        { category: { $regex: new RegExp(query, 'i') } },
-      ],
-    });
+    const products = await Product.findById(id);
+
+    if (!products) {
+      return res.status(404).json({ message: "Product not found" });
+    }
 
     res.json(products);
   } catch (error) {
