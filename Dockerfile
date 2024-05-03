@@ -10,9 +10,6 @@ COPY package*.json ./
 # Install project dependencies
 RUN npm install
 
-# clean install & omit the dev dependencies
-RUN npm ci --omit=dev
-
 # Copy the rest of the project files to the working directory
 COPY . .
 
