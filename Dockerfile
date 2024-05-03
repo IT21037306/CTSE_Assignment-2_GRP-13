@@ -13,6 +13,9 @@ RUN npm install
 # Copy the rest of the project files to the working directory
 COPY . .
 
+# Run the test
+RUN npm test 
+
 # Expose a port (if your Node.js app listens on a specific port)
 EXPOSE 5000
 
