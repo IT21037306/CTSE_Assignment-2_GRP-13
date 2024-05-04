@@ -29,7 +29,7 @@ describe("ADD Product /api/Product", () => {
 describe("UPDATE Product /api/Product", () => {
   test("Update product : PUT /api/product/update/:id", async () => {
     const res = await supertest(app)
-      .put("/api/product/update/66334f5901f79ae4d64d8ed3")
+      .put("/api/product/update/66346d7fbc4e4d22ed21779e")
       .send({
         name: "Updated Test Product 1",
         price: 200,
